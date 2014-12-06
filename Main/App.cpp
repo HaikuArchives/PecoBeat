@@ -178,7 +178,9 @@ BBitmap	*App::FetchResourceBitmap(const char *name) {
 	buf = (char *)Resourcen->LoadResource('BBMP', name, &groesse);
 	if (!buf) {
 		(new BAlert("", text.String(), "Go crash!", NULL, NULL, B_WIDTH_AS_USUAL, B_STOP_ALERT))->Go();
-		cerr << "*** Resource not found: " << name << endl;
+		// TODO: Build Fix
+		printf("*** Resource not found: %s\n", name);
+		//cerr << "*** Resource not found: " << name << endl;
 		return 0;
 	}
 	msg.Unflatten(buf);

@@ -42,9 +42,9 @@ MouseButton::MouseButton( BRect frame, int32 nr, BMessage *msg)
 	get_mouse_map(&mouseMap);
 	
 	switch ( nr ) {
-		case 1: fMouseButton = mouseMap.left; break;
-		case 2: fMouseButton = numButtons == 3 ? mouseMap.middle : mouseMap.right; break;
-		case 3: fMouseButton = mouseMap.right; break;
+		case 1: fMouseButton = mouseMap.button[B_PRIMARY_MOUSE_BUTTON]; break;
+		case 2: fMouseButton = numButtons == 3 ? mouseMap.button[B_TERTIARY_MOUSE_BUTTON] : mouseMap.button[B_SECONDARY_MOUSE_BUTTON]; break;
+		case 3: fMouseButton = mouseMap.button[B_SECONDARY_MOUSE_BUTTON]; break;
 	}
 
 	// Init Drawing

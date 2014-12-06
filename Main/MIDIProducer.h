@@ -8,8 +8,8 @@
  *              Werner Freytag <freytag@gmx.de>
  */
 
-#ifndef _MIDI_PRODUCER_H
-#define _MIDI_PRODUCER_H
+#ifndef _PECO_MIDI_PRODUCER_H
+#define _PECO_MIDI_PRODUCER_H
 
 #include <MidiProducer.h>
 #include <MidiConsumer.h>

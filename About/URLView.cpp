@@ -22,6 +22,7 @@
 #include <Alert.h>
 #include <Application.h>
 #include <Bitmap.h>
+#include <Clipboard.h>
 #include <fs_attr.h>
 #include <MenuItem.h>
 #include <NodeInfo.h>

@@ -45,7 +45,9 @@ void DrumsetButton::SetKey(int8 key) {
 	
 	if (key!=-1) {
 		if (key!=0 && key<kFirstMidiID || key>kLastMidiID) {
-			cerr << "DrumsetButton: Key out of range" << endl;
+			// TODO: Build Fix
+			printf("DrumsetButton: Key out of range");
+			//cerr << "DrumsetButton: Key out of range" << endl;
 			return;
 		}
 		fKey = key;

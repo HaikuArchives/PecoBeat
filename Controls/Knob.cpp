@@ -19,6 +19,9 @@
 
 #include "App.h"
 
+// TODO: I assume PI is supposed to be pi
+#define PI 3.14159
+
 Knob::Knob(	BRect frame, const char *name, BMessage *message,
 	uint32 resizeMask, uint32 flags, int32 maxValue)
 : 	BControl( frame, name, NULL, message, resizeMask, flags),

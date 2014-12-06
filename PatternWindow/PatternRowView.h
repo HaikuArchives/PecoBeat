@@ -34,7 +34,7 @@ void				MessageReceived(BMessage *msg);
 void				Draw(BRect updateRect);
 void				Draw() { Draw( Bounds() ); }
 
-inline int32		RowIndex();
+int32				RowIndex();
 
 private:
 

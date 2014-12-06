@@ -11,6 +11,7 @@
 #ifndef _PATTERN_TOOLBAR_H
 #define _PATTERN_TOOLBAR_H
 
+#include <PictureButton.h>
 #include <View.h>
 
 #include "PatternWindow.h"
