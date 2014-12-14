@@ -29,7 +29,7 @@
 #include "Prefs.h"
 #include "WindowsMenu.h"
 
-#define INTERNALMIDI_SIGNATURE "application/x-vnd.pecora-internal_midi"
+#define INTERNALMIDI_SIGNATURE "application/x-vnd.haiku-internal_midi"
 #define INTERNALMIDI_NAME "InternalMIDI"
 #define NUMBER_OF_INSTRUMENTS 60
 
@@ -43,11 +43,11 @@ DrumsetWindow::DrumsetWindow( BRect frame )
 		MoveTo( frame.LeftTop() );
 		ResizeTo( frame.Width(), frame.Height() );
 	}
-	
+
 	BMenuBar	*menubar;
 	BMenu		*menu;
 	BMenuItem	*menuitem;
-	
+
 	menubar	= new BMenuBar( BRect(0,0,10000,0), "menubar", B_FOLLOW_TOP | B_FOLLOW_LEFT_RIGHT );
 	menu	= new BMenu("File");
 	menu->AddItem(new BMenuItem("Close", new BMessage(B_QUIT_REQUESTED), 'W'));
@@ -56,11 +56,11 @@ DrumsetWindow::DrumsetWindow( BRect frame )
 	menuitem->SetTarget(be_app);
 	menu->AddItem(menuitem);
 	menubar->AddItem(menu);
-	
+
 	menu = new BMenu(INTERNALMIDI_NAME);
 	menu->AddItem(new BMenuItem("Settings...", new BMessage('IMPr'), 'P'));
 	menu->AddItem(new BMenuItem("Start InternalMIDI", new BMessage('IMSt'), 'I'));
-	
+
 	menubar->AddItem(menu);
 
 	menu	= new WindowsMenu(2);
@@ -76,12 +76,12 @@ DrumsetWindow::DrumsetWindow( BRect frame )
 
 	fWidthOffset = 11;
 	fHeightOffset = 11 + (int)menubar->Bounds().bottom;
-	
+
 	SetWindowAlignment(B_PIXEL_ALIGNMENT,
 		0, 0, kDrumsetButtonBounds.Width(), fWidthOffset,
 		0, 0, kDrumsetButtonBounds.Height(), fHeightOffset % kDrumsetButtonBounds.IntegerHeight()
 	);
-	
+
 	UpdateSize();
 
 	fMessageRunner = new BMessageRunner( this, new BMessage('chkc'), 100000 );
@@ -92,7 +92,7 @@ DrumsetWindow::DrumsetWindow( BRect frame )
 DrumsetWindow::~DrumsetWindow() {
 
 	delete fMessageRunner;
-	
+
 	gPrefs.RemoveName("drumsetwindow_frame");
 	gPrefs.AddRect("drumsetwindow_frame", Frame());
 }
@@ -114,23 +114,23 @@ void DrumsetWindow::MessageReceived(BMessage *message) {
 		case 'chkc': {
 			FindInternalMIDI();
 		} break;
-		
+
 		case B_ABOUT_REQUESTED: {
 			be_app->PostMessage( message );
 		} break;
-		
+
 		case 'Work': {
 			message->AddInt32("workspaces", Workspaces());
 			be_app->PostMessage(message);
 		} break;
-		
+
 		case 'IMPr': {
 
 			BMessage        msg('Sett');
 	        BMessenger( INTERNALMIDI_SIGNATURE ).SendMessage( &msg );
 
 		} break;
-		
+
 		case 'IMSt': {
 			if ( !be_roster->IsRunning( INTERNALMIDI_SIGNATURE ) ) {
 				if ( be_roster->Launch( INTERNALMIDI_SIGNATURE ) != B_OK ) {
@@ -152,7 +152,7 @@ void DrumsetWindow::MessageReceived(BMessage *message) {
 void DrumsetWindow::FindInternalMIDI() {
 
 	bool connected = false;
-	
+
 	BMidiEndpoint	*endPoint;
 	for (int i=0; i<gMidiProducer->Connections()->CountItems(); ++i) {
 		endPoint = (BMidiEndpoint *)gMidiProducer->Connections()->ItemAt(i);
@@ -183,7 +183,7 @@ float DrumsetWindow::RowsToHeight( int32 rows ) {
 }
 
 float DrumsetWindow::WidthForRows( int32 rows ) {
-	
+
 	int32	cols = NUMBER_OF_INSTRUMENTS / rows + (NUMBER_OF_INSTRUMENTS % rows ? 1 : 0);
 
 	return kDrumsetButtonBounds.Width() * cols + fWidthOffset;
@@ -196,7 +196,7 @@ void DrumsetWindow::FrameResized(float new_width, float new_height) {
 void DrumsetWindow::UpdateSize( bool zoom ) {
 
 	BScreen	screen(this);
-	
+
 	// Größe aktualisieren
 	SetSizeLimits( 0.0, 10000.0, 0.0, 10000.0);
 	int32 numRows = max_c(1, HeightToRows( Frame().Height() ) );
@@ -209,22 +209,22 @@ void DrumsetWindow::UpdateSize( bool zoom ) {
 	{
 		if (RowsToHeight(numRows) > screen.Frame().Height()) numRows = 1;
 		else ++numRows;
-	} 
+	}
 
 	ResizeTo( WidthForRows(numRows), RowsToHeight(numRows) );
-	
+
 	// Größenlimit
 	float width = screen.Frame().Width();
 
 	int32 cols = max_c(1, (int)((width - fWidthOffset) / kDrumsetButtonBounds.IntegerWidth()));
 	int32 rows = NUMBER_OF_INSTRUMENTS / cols + (NUMBER_OF_INSTRUMENTS % cols ? 1 : 0);
 	float minHeight = RowsToHeight( rows );
-	
+
 	int32 maxRows = min_c( HeightToRows(screen.Frame().Height()-fHeightOffset), NUMBER_OF_INSTRUMENTS);
 	float maxHeight = RowsToHeight(maxRows);
-	
+
 	SetSizeLimits( 0.0, 10000.0, minHeight, maxHeight);
-	
+
 	// Buttons aktualisieren
 	BView	*main_view = FindView("main");
 	BView	*child;
