@@ -8,7 +8,7 @@
  *              Werner Freytag <freytag@gmx.de>
  */
 
-#include "SongWindow/SongToolBar.h"
+#include "SongToolBar.h"
 
 #include <iostream>
 

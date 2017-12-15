@@ -21,7 +21,7 @@
 #include "App.h"
 #include "Song.h"
 
-#include "SongWindow/SongToolBar.h"
+#include "../SongWindow/SongToolBar.h"
 
 PlayListField::PlayListField(BRect rect, BMessage *message)
 	: BControl(rect, "playlistfield", NULL, message, B_FOLLOW_NONE, B_WILL_DRAW),

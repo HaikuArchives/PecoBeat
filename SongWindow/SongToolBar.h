@@ -13,7 +13,7 @@
 
 #include <View.h>
 
-#include "SongWindow/SongWindow.h"
+#include "SongWindow.h"
 
 class SongToolBar : public BView {
 

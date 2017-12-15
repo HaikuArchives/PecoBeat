@@ -10,6 +10,7 @@
 
 #include <iostream>
 
+#include <stdio.h>
 #include <math.h>
 #include <MessageRunner.h>
 #include <Window.h>

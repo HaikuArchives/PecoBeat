@@ -35,7 +35,7 @@
 #include "Prefs.h"
 #include "Song.h"
 
-#include "SongWindow/SongWindow.h"
+#include "../SongWindow/SongWindow.h"
 
 #define FILE_MIME "application/x-pecobeat-song"
 #define APP_MIME "application/x-vnd.pecora-pecobeat"

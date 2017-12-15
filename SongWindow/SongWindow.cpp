@@ -23,7 +23,7 @@
 #include "PlayListField.h"
 #include "Prefs.h"
 #include "Song.h"
-#include "SongWindow/SongToolBar.h"
+#include "SongToolBar.h"
 #include "WindowsMenu.h"
 
 SongWindow::SongWindow( BRect frame )
