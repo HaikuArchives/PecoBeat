@@ -1,5 +1,7 @@
 # PecoBeat
 
+![screenshot](screenshot.png)
+
 PecoBeat is a MIDI drum computer for Haiku
 
 ## Requirements
